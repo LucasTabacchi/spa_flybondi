@@ -1,5 +1,5 @@
 # SPA Flybondi – Nelsona
-Proyecto base **vanilla JS + Webpack** siguiendo la estructura pedida (similar a `spacex-spa-vanilla`).
+Proyecto base **vanilla JS + Webpack** 
 
 ## Scripts
 - `npm install`
@@ -20,9 +20,9 @@ public/
   ├── index.html
   └── dataset.json
 src/
-  ├── app.js        # UI + eventos
-  ├── logic.js      # algoritmo RT + filtros
-  └── utils.js      # helpers de fecha/moneda
+  ├── app.js        
+  ├── logic.js     
+  └── utils.js     
 .babelrc
 .gitignore
 index.js            # entry
