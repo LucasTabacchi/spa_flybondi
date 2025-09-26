@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿A dónde puedo ir con $800? – Flybondi Challenge</title>
+  <style>
+    :root { --bg:#0b1220; --card:#111a2e; --text:#e7eefc; --muted:#a9b5d1; --accent:#ffd400; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; background: var(--bg); color: var(--text); }
+    header { display:flex; gap:12px; align-items:center; padding:18px 20px; border-bottom:1px solid #1e2a44; position: sticky; top:0; background: rgba(11,18,32,0.9); backdrop-filter: blur(8px); }
+    .brand { font-weight:800; letter-spacing:.4px; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 18px; }
+    .card { background: var(--card); border: 1px solid #213055; border-radius: 16px; padding: 16px; }
+    label { font-size: 14px; color: var(--muted); display:block; margin-bottom:6px; }
+    input, select { width:100%; padding: 12px 14px; font-size: 18px; border-radius: 12px; border:1px solid #2a3b66; background:#0e172a; color:var(--text); }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row3 { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .actions { display:flex; gap: 10px; flex-wrap: wrap; }
+    button { cursor:pointer; font-size:18px; padding: 12px 16px; border-radius: 14px; border:1px solid #2a3b66; background:#13203b; color:var(--text); }
+    button.primary { background: var(--accent); color:#1a1600; border-color: #b89a00; font-weight: 700; }
+    .result { background:#0e172a; border:1px solid #24365f; border-radius:16px; padding:14px; display:grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .result h3 { margin:0; font-size:20px; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .grid { display:grid; gap: 12px; }
+    .toolbar { display:flex; gap:8px; align-items:center; justify-content: space-between; }
+    .pill { font-size: 13px; padding: 6px 10px; border:1px solid #2a3b66; border-radius:999px; background:#0e172a; color:var(--muted); }
+    .empty { text-align:center; padding: 32px; color: var(--muted); }
+    .sr { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">flybondi · ayuda para Nelsona</div>
+    <div aria-live="polite" id="status" class="sr"></div>
+  </header>
+  <main class="container grid">
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title" style="margin:0 0 8px;">Decime: ¿desde dónde salís y con cuánto contás?</h2>
+      <div class="row">
+        <div>
+          <label for="origin">Origen</label>
+          <input id="origin" placeholder="Ej: COR (Córdoba) o EPA (El Palomar)" autocomplete="off" />
+        </div>
+        <div>
+          <label for="budget">Presupuesto total (ida y vuelta)</label>
+          <input id="budget" type="number" inputmode="decimal" min="50" step="10" value="800" />
+        </div>
+      </div>
+      <div class="row3" style="margin-top:12px;">
+        <div>
+          <label for="pax">Personas</label>
+          <select id="pax">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div>
+          <label for="durations">Duración (noches)</label>
+          <select id="durations" multiple size="4">
+            <option value="3" selected>2–3</option>
+            <option value="5" selected>4–5</option>
+            <option value="7" selected>7</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div>
+          <label for="month">Mes preferido (opcional)</label>
+          <input id="month" type="month" />
+        </div>
+      </div>
+      <div class="actions" style="margin-top:12px;">
+        <button id="btn-suggest" class="primary" type="button">Ver adónde puedo ir</button>
+        <button id="btn-reset" type="button">Limpiar</button>
+      </div>
+      <p class="muted" style="margin:8px 0 0;">Consejo: escribí el código IATA del origen (COR, EPA, AEP, EZE, etc.).</p>
+    </section>
+
+    <section class="grid">
+      <div class="toolbar">
+        <div class="pill">Resultados</div>
+        <div class="actions">
+          <button id="sort-price" type="button">Ordenar por precio</button>
+          <button id="sort-value" type="button">Mejor precio / noche</button>
+        </div>
+      </div>
+      <div id="results" class="grid"></div>
+    </section>
+  </main>
+  
+</body>
+</html>
