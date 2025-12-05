@@ -1,6 +1,7 @@
 const path = require('path'); // para manejar las rutas de los archivos
 
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // para generar el archivo html
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // para copiar archivos estáticos
 
 module.exports = {
   entry: './index.js', // punto de entrada de nuestro proyecto
@@ -40,6 +41,11 @@ module.exports = {
       inject: true, // inject para los archivos html
       template: './public/index.html', // template para los archivos html
       filename: './index.html', // nombre del archivo de salida
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public/dataset.json', to: 'dataset.json' }, // copia dataset.json a dist/
+      ],
     }),
   ],
 
